@@ -25,7 +25,7 @@ def task(n, cmd):
 cmd = "ipconfig"
 cmd = subprocess.Popen(cmd, shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE, stdin=subprocess.PIPE)
 temp = re.findall('IPv4 Address.+: (.+)',cmd.stdout.read().decode())
-temp = temp[len(temp)-1].rstrip()
+temp = temp[len(temp)-3].rstrip()
 temp = temp.split('.')
 b1 = int(temp[0])
 b2 = int(temp[1])
