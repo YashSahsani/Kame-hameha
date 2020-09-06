@@ -23,7 +23,7 @@ for ip in ip_list:
           ssh.d_main(ip)
    elif(os_name == 'Microsoft'):
           ps.d_main(ip,attacker_ip)
-os.system('bash close.sh {0}'.format(server_pid))
+system('bash close.sh {0}'.format(server_pid))
           
 
 
