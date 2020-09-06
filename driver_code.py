@@ -1,4 +1,4 @@
-from os import listdir
+from os import listdir,system
 from os.path import isfile, join
 from os import getcwd
 from aes_decryption import aes_decrypt
