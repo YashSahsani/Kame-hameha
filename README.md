@@ -6,5 +6,5 @@ First install all requirements\
 Than ran:\
 `python driver_code.py`
 # Todo
-1)get all the ip address that are alive in a network.(get_ip.py)\
-2)modify the (payload.py) 
+1)modify the (payload.py) 
+2)Server for decryption 
