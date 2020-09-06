@@ -2,14 +2,9 @@ import threading
 import re
 import subprocess
 import platform
+import time
 Flag = False
-def get_ip_():
-    global Flag,ip
-    while(True):
-        if(Flag):
-            return ip
-        else:
-            pass
+
 
 def task(n, cmd):
     global ip
@@ -48,8 +43,15 @@ elif(platform.system() == 'Linux'):
 
 cmd = str(b1) + "."+ str(b2) + "." + str(b3) + "."
 ip = []
-for i in range(1,255):
-    t = threading.Thread(name = i, target = task, args = (i, cmd))
+def get_ip_():
+    global Flag,ip
+    for i in range(1,255):
+        t = threading.Thread(name = i, target = task, args = (i, cmd))
     t.daemon = False
     t.start()
-print(get_ip_())
+    while(True):
+        if(Flag):
+            return ip
+        else:
+            pass
+
