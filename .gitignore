@@ -6,6 +6,8 @@ __pycache__/
 # C extensions
 *.so
 
+main_paramiko_log.txt
+
 # Distribution / packaging
 .Python
 build/

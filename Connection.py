@@ -1,5 +1,6 @@
 import sys
 from threading import Thread
+import time
 try:
     from paramiko import SSHClient
     from paramiko import AutoAddPolicy
@@ -38,6 +39,7 @@ class Connection(Thread):
                 scp.put('hello.py','send.py')
                 scp.close()
                 sshConnection.exec_command("python3 send.py")
+                time.sleep(4)
                 sshConnection.exec_command("rm send.py")
             sshConnection.close()
         except:

