@@ -5,7 +5,10 @@ from Crypto.Cipher import AES
 from Crypto.Util.Padding import pad
 from Crypto.Random import get_random_bytes
 def aes_encrypt(filename):
-    data = open(filename,'rb').read()
+    try:
+        data = open(filename,'rb').read()
+    except:
+        return
     key = get_random_bytes(32)
     try:
         os.mkdir('res/')
