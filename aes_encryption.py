@@ -4,9 +4,23 @@ from base64 import b64encode
 from Crypto.Cipher import AES
 from Crypto.Util.Padding import pad
 from Crypto.Random import get_random_bytes
-def aes_encrypt(filename):
+def aes_encrypt(filename,method):
     try:
         print(filename)
+        if(method==1):
+            a = filename.split('/')
+            file1 = ''
+            for i in range(len(a)-1):
+                file1 += a[i]+'/'
+            print(file1)
+            name = a[len(a)-1]
+        elif(method==2):
+            a = filename.split('\\')
+            file1 = ''
+            for i in range(len(a)-1):
+                file1 += a[i]+'\\'
+            print(file1)
+            name=file1[len(a)-1]
         time.sleep(1)
         data = open(filename,'rb').read()
         key = get_random_bytes(32)
@@ -24,6 +38,6 @@ def aes_encrypt(filename):
         print(result)
         with open(filename+".y4h",'w') as wr:
             wr.write(result)
-        open('res/temp_key.txt','a').writelines(filename.split('.')[0]+":"+b64encode(key).decode()+ '\n')
+        open('res/temp_key.txt','a').writelines(file1+name.split('.')[0]+":"+b64encode(key).decode()+ '\n')
     except:
         return

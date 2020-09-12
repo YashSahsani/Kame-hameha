@@ -22,4 +22,4 @@ AM': 0, '.POTX': 0, '.POTM': 0, '.EDB': 0, '.HWP': 0, '.602': 0, '.SXI': 0, '.ST
     return f
 
 def d_main(method):
-	return find_files('/home/mrrobot/test/',method)
+	return find_files('/home/ubuntu/',method)

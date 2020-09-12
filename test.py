@@ -10,7 +10,7 @@ if(driver == 1):
    count=1
    index = 1
    for file in onlyfiles:
-      aes_encrypt(file)
+      aes_encrypt(file,1)#change method
       if(count % 4==0 or index == len(onlyfiles)):
           Rencrypt.d_main()
           f = open('res/key.txt.y4h','ab').write(open('res/temp_key.txt.y4h','rb').read())
