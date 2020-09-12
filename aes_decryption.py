@@ -11,7 +11,7 @@ def aes_decrypt(filename,method):
                 file1 += a[i]+'/'
             print(file1)
             name = a[len(a)-1]
-        elif(method==2):
+    elif(method==2):
             a = filename.split('\\')
             file1 = ''
             for i in range(len(a)-1):

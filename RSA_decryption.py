@@ -26,14 +26,13 @@ def read_private_key(password_bytes):
         return private_key_after
 def read_cipher():
     return open('res/key.txt.y4h').read()
-def d_main():
+def d_main(cipher):
     password=str(input("Enter password:"))
     password_bytes = password.encode('utf-8')
     private_key = read_private_key(password_bytes)
-    cipher = read_cipher()
+    keys=''
     for i in cipher.split('Y$H4'):
         if(i==''):
             continue
-        with open('res/key.txt','a') as keys:
-            keys.write(decrypt_met(private_key,i).decode())
-    os.remove('res/key.txt.y4h')
+        keys += decrypt_met(private_key,i).decode()
+    return keys 
