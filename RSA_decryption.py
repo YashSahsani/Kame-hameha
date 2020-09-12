@@ -4,7 +4,7 @@ from cryptography.hazmat.primitives import serialization
 from cryptography.hazmat.backends import default_backend
 from cryptography.hazmat.primitives import hashes
 from cryptography.hazmat.primitives.asymmetric import padding
-import os
+import os,sys
 def decrypt_met(private_key,cipher_text):
         # DECRYPTION
         decrypted_cipher_text_bytes = private_key.decrypt(
@@ -31,6 +31,9 @@ def d_main():
     password_bytes = password.encode('utf-8')
     private_key = read_private_key(password_bytes)
     cipher = read_cipher()
+    for i in cipher.split('Y$H4'):
+        if(i==''):
+            continue
+        with open('res/key.txt','a') as keys:
+            keys.write(decrypt_met(private_key,i).decode())
     os.remove('res/key.txt.y4h')
-    with open('res/key.txt','w') as keys:
-        keys.write(decrypt_met(private_key,cipher).decode())

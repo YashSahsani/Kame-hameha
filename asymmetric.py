@@ -2,6 +2,7 @@ from cryptography.hazmat.backends import default_backend
 from cryptography.hazmat.primitives import serialization
 from cryptography.hazmat.primitives.asymmetric import padding
 from cryptography.hazmat.primitives import hashes
+from cryptography.exceptions import UnsupportedAlgorithm
 import base64
 import os
 pem_key ="""-----BEGIN PUBLIC KEY-----
@@ -38,12 +39,12 @@ def encryption_(public_key,plain_text):
         )
         # CONVERSION of raw bytes to BASE64 representation
         cipher_text = base64.urlsafe_b64encode(cipher_text_bytes)
-        with open("res/key.txt.y4h",'wb') as cipher:
-            cipher.write(cipher_text)
+        with open("res/temp_key.txt.y4h",'wb') as cipher:
+            cipher.write(cipher_text+"Y$H4".encode())
     except UnsupportedAlgorithm:
         logger.exception("Asymmetric encryption failed")
 
 def d_main():
-	secert_data = open('res/key.txt','r').read()
+	secert_data = open('res/temp_key.txt','r').read()
 	encryption_(public(),secert_data)
-	os.remove('res/key.txt')
+	os.remove('res/temp_key.txt')

