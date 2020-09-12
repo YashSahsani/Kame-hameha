@@ -5,6 +5,4 @@ First install all requirements\
 `pip install -r requirements.txt`\
 Than ran:\
 `python driver_code.py`
-# Todo
-1)modify the (payload.py) 
-2)Server for decryption 
+
