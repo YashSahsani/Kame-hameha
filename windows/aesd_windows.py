@@ -3,21 +3,12 @@ from base64 import b64decode
 from Crypto.Cipher import AES
 from Crypto.Util.Padding import unpad
 import os,re
-def aes_decrypt(filename,method):
-    if(method==1):
-            a = filename.split('/')
-            file1 = ''
-            for i in range(len(a)-1):
-                file1 += a[i]+'/'
-            print(file1)
-            name = a[len(a)-1]
-    elif(method==2):
-            a = filename.split('\\')
-            print(a)
-            file1 = ''
-            for i in range(len(a)-1):
-                file1 += a[i]+'\\\\'
-            name=a[len(a)-1]
+def aes_decrypt(filename):
+    a = filename.split('\\')
+    file1 = ''
+    for i in range(len(a)-1):
+        file1 += a[i]+'\\\\'
+    name=a[len(a)-1]
     b64 = json.loads(open(filename,'r').read())
     iv = b64decode(b64['iv'])
     ct = b64decode(b64['ciphertext'])

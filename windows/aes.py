@@ -6,21 +6,11 @@ from Crypto.Util.Padding import pad
 from Crypto.Random import get_random_bytes
 def aes_encrypt(filename,method):
     try:
-        print(filename)
-        if(method==1):
-            a = filename.split('/')
-            file1 = ''
-            for i in range(len(a)-1):
-                file1 += a[i]+'/'
-            print(file1)
-            name = a[len(a)-1]
-        elif(method==2):
-            a = filename.split('\\')
-            file1 = ''
-            for i in range(len(a)-1):
-                file1 += a[i]+'\\\\'
-            print(file1)
-            name=a[len(a)-1]
+        a = filename.split('\\')
+        file1 = ''
+       	for i in range(len(a)-1):
+            file1 += a[i]+'\\\\'
+        name=a[len(a)-1]
         data = open(filename,'rb').read()
         key = get_random_bytes(32)
         try:

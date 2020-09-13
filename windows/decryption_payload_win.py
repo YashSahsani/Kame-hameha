@@ -2,9 +2,9 @@ import base64
 import os
 import win32api
 from aesd_windows import aes_decrypt
-import RSAD as Rdecrypt
+import RSAD as Rdecrypt # THis shpuld be removed
 def decrypt_win():
-    Rdecrypt.d_main()
+    Rdecrypt.d_main() # same for this to 
     for drive in win32api.GetLogicalDriveStrings().split('\000')[:-1]:
         if(str(drive) == "C:\\"):
                 continue
@@ -20,5 +20,3 @@ def decrypt_win():
                         aes_decrypt(path,2)
                     except:
                         continue
-
-decrypt_win()
