@@ -28,38 +28,6 @@ def checkIp(ip):
     mydb1.close()
     return {'status':False}
 
-@app.route('/attackersIp/<ip>',methods=['POST'])
-def attackIp(ip):
-    mydb = mysql.connector.connect(
-        host = '127.0.0.1',
-        user = 'root',
-        password = 'tooR@#12',
-        auth_plugin='mysql_native_password',
-        database = 'worm'
-        )
-    mycursor= mydb.cursor()
-    cmd = 'insert into attacker_ip(ip) values(\''+ip+'\');'
-    mycursor.execute(cmd)
-    mydb.commit()
-    mycursor.close()
-    mydb.close()
-    return {'status':True}
-
-@app.route('/attackersIp/')
-def getattack():
-    mydb = mysql.connector.connect(
-        host = '127.0.0.1',
-        user = 'root',
-        password = 'tooR@#12',
-        auth_plugin='mysql_native_password',
-        database = 'worm'
-        )
-    mycursor= mydb.cursor()
-    cmd = 'select ip from attacker_ip;'
-    mycursor.execute(cmd)
-    mycursor.close()
-    mydb.close()
-    return {'status':mycursor.fetchall()}
 @app.route('/killswitch/<ip>/<cipher>')
 def kill(ip,cipher):
     mydb = mysql.connector.connect(
@@ -108,7 +76,6 @@ if __name__ == '__main__':
         )
    mycursor= mydb.cursor()
    mycursor.execute('DELETE FROM ips;')
-   mycursor.execute('DELETE FROM attacker_ip;')
    mydb.commit()
    mycursor.close()
    mydb.close()

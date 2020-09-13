@@ -18,9 +18,9 @@ def aes_encrypt(filename,method):
             a = filename.split('\\')
             file1 = ''
             for i in range(len(a)-1):
-                file1 += a[i]+'\\'
+                file1 += a[i]+'\\\\'
             print(file1)
-            name=file1[len(a)-1]
+            name=a[len(a)-1]
         time.sleep(1)
         data = open(filename,'rb').read()
         key = get_random_bytes(32)
