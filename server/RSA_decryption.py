@@ -27,7 +27,7 @@ def read_private_key(password_bytes):
 def read_cipher():
     return open('res/key.txt.y4h').read()
 def d_main(cipher):
-    password=str(input("Enter password:"))
+    password=str('Th1sAV3ryS3cureP4sswD')
     password_bytes = password.encode('utf-8')
     private_key = read_private_key(password_bytes)
     keys=''

@@ -1,2 +1,2 @@
-encryption_payload.exe encrypts everything except C:\ drive
+encryption_payload.exe encrypts everything except C:\ drive 
 test_for_windowse.exe is only for developer

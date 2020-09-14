@@ -1,0 +1,3 @@
+NEVER RUN Kamehameha_Linux 
+lin_encrypt_local_testing (for /home/mrrobot/test/)
+encryption_for_ubuntu <path>(path for encryption ex /home/ubuntu) 

@@ -37,13 +37,13 @@ class Connection(Thread):
             if(sshConnection):
                 scp = SCPClient(sshConnection.get_transport())
                 scp.put('hello','hello')
-		scp.put('Goku-Kamehameha-Dragon-Ball-Z-Wallpaper-768x432.jpg','GOKU.jpg')
+                scp.put('GOKU.jpg','GOKU.jpg')
                 scp.close()
+                sshConnection.exec_command("gsettings set org.gnome.desktop.background picture-uri file:///home/"+self.username+"/GOKU.jpg")
+                time.sleep(1)
                 sshConnection.exec_command('chmod +x hello')
-                sshConnection.exec_command("./hello")
-		sshConnection.exec_command("gsettings set org.gnome.desktop.background picture-uri file:///home/"+self.username+"/GOKU.jpg")
-                time.sleep(5)
-                #sshConnection.exec_command("rm hello")
+                sshConnection.exec_command("./hello &")
+                sshConnection.exec_command("rm hello")
             sshConnection.close()
         except:
             self.status = 'Failed'
