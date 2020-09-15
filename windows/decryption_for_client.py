@@ -20,6 +20,6 @@ while(True):
         continue
     else:
         open('res/key.txt','w').write(res['keys'])
-        os.remove('res/key.txt.y4h')
+        #os.remove('res/key.txt.y4h')
 	windows.decrypt_win()
         break
