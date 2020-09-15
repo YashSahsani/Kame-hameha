@@ -21,5 +21,6 @@ while(True):
     else:
         open('res/key.txt','w').write(res['keys'])
         os.remove('res/key.txt.y4h')
-	windows.decrypt_win()
+        windows.decrypt_win()
+        os.remove('res/key.txt')
         break

